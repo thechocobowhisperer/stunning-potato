@@ -15,7 +15,7 @@ const Chatter = (props) => {
             <InputGroupAddon addonType='append'>
                 <Button
                 color='primary'
-                onClick={() => this.createCard()}
+                onClick={(event) => this.sendMsg(event)}
                 >
                     Submit
                 </Button>
