@@ -6,7 +6,6 @@ import Conversations from './components/ChatSelect/ChatSelect'
 class App extends Component {
   state = {
     conversations : [
-                    {name: 'Zac'}, 
                     {name: 'Person 1'}, 
                     {name: 'Person 2'}, 
                     {name: 'Person 3'}
@@ -19,7 +18,7 @@ class App extends Component {
   
   render () {
     const convPerson = this.state.conversations.map((person, index) => {
-      return (<div><span key={index} id={index}>{person.name}</span></div>
+      return (<div><p key={index} id={index}>{person.name}</p></div>
   )})
       
     return (
@@ -33,7 +32,12 @@ class App extends Component {
             </Conversations>
           </div>
           <div className='col-8'>
-            <Chatter />
+            <Chatter>
+              <p>Here is where the messages will be displayed</p>
+              <p>Here is where the messages will be displayed</p>
+              <p>Here is where the messages will be displayed</p>
+              <p>Here is where the messages will be displayed</p>
+            </Chatter>
           </div>
         </div>
       </div>
