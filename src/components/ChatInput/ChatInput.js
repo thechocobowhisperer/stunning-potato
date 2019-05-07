@@ -10,7 +10,7 @@ const Chatter = (props) => {
                 <Button>Switch</Button>
             </InputGroupAddon>
             <Input className='col' onChange={(event) => this.changeName(event)} name='Name of Input' 
-            placeholder='Card Title'
+            placeholder={props.suggestion}
             />
             <InputGroupAddon addonType='append'>
                 <Button

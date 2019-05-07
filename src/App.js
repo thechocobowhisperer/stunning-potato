@@ -15,13 +15,13 @@ class App extends Component {
                     {name: 'Person 2', 
                     isActive: false, 
                     messages: [
-                       'Hello, Person 2', 'Hello'
+                       {msg:'Hello, Person 2', sender: 'You'}, {msg:'Hello', sender: 'Person 2'}
                     ]}, 
 
                     {name: 'Person 3', 
                     isActive: false, 
                     messages: [
-                      'Hello, Person 3',  'Hola'
+                      {msg:'Hello, Person 3', sender: 'You'},  {msg:'Hola', sender: 'Person 3'}
                     ]}
     ]
   }
@@ -35,7 +35,7 @@ class App extends Component {
         if (conv.isActive) {
           return <p key={index} id={conv.name}>{msgs.sender} : {msgs.msg}</p>
         }
-        
+
        })
      
     )})
@@ -75,7 +75,7 @@ class App extends Component {
             </Conversations>
           </div>
           <div className='col-8'>
-            <Chatter>
+            <Chatter suggestion='Send as X'>
               {dispMsgs}
             </Chatter>
           </div>
