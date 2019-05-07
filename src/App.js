@@ -30,18 +30,19 @@ class App extends Component {
     const chatSelect = convSelect[0].messages
     const sendSelect = chatSelect[0].sender
     const msgSelect = chatSelect[0].msg
-    // const dispMsgs = this.state.conversations.map((conv) => {return (
-    //   conv.messages.map((msgs, index)=>{
-    //     // msgs.map(())
-    //     if (conv.isActive) {
-    //       return 
-    //     }
-    //     })
-      
-    // )})
+    const dispMsgs = this.state.conversations.map((conv) => {return (
+      conv.messages.map((msgs, index)=>{
+        if (conv.isActive) {
+          return <p key={index} id={conv.name}>{msgs.sender} : {msgs.msg}</p>
+        }
+        
+       })
+     
+    )})
 
-    console.log(msgSelect, sendSelect )
+    console.log(dispMsgs);
   }
+        
   
   sendMsg = (event) => {
     let message = []
@@ -53,9 +54,9 @@ class App extends Component {
       return (<p key={index} id={index}>{conv.name}</p>
   )})
   const dispMsgs = this.state.conversations.map((conv) => {return (
-    conv.messages.map((msgs, index)=>{
+     conv.messages.map((msgs, index)=>{
       if (conv.isActive) {
-        return <p key={index} id={conv.name}>{msgs}</p>
+         return <p key={index} id={conv.name}>{msgs.sender} : {msgs.msg}</p>
       }
       })
     
@@ -75,7 +76,7 @@ class App extends Component {
           </div>
           <div className='col-8'>
             <Chatter>
-              {/* {dispMsgs} */}
+              {dispMsgs}
             </Chatter>
           </div>
         </div>
