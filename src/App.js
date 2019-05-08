@@ -23,7 +23,8 @@ class App extends Component {
                     messages: [
                       {msg:'Hello, Person 3', sender: 'You'},  {msg:'Hola', sender: 'Person 3'}
                     ]}
-    ]
+    ],
+    currentConversation : 'Person 1'
   }
   whatHappened = (event) => {
     const convSelect = this.state.conversations
@@ -55,7 +56,7 @@ class App extends Component {
   )})
   const dispMsgs = this.state.conversations.map((conv) => {return (
      conv.messages.map((msgs, index)=>{
-      if (conv.isActive) {
+      if (conv.name === this.state.currentConversation) {
          return <p key={index} id={conv.name}>{msgs.sender} : {msgs.msg}</p>
       }
       })
@@ -67,7 +68,7 @@ class App extends Component {
         <div className='row'>
           <div className='col-4'>
             <Conversations>
-              <button onClick={(event) => this.whatHappened(event)}>Show me the console!</button>
+              {/* <button onClick={(event) => this.whatHappened(event)}>Show me the console!</button> */}
               <h2>
                 Direct Messages
               </h2>

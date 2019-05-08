@@ -3,7 +3,7 @@ import { InputGroup, Input, InputGroupAddon, Button } from 'reactstrap';
 
 const Chatter = (props) => {
     return (
-      <div className='col'>
+      <div className='container'>
         {props.children}
         <InputGroup>
             <InputGroupAddon addonType='prepend'>
