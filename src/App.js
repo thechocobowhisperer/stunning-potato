@@ -62,14 +62,14 @@ class App extends Component {
   sendMsg = (event) => {
     const conversations = this.state.conversations;
     const msgArray = conversations.map((convo) => {
-      if (convo.name === this.state.currentConversation) {
+      if (convo.name === this.state.currentConversation && this.state.currentMsg !== '') {
         convo.messages.push(this.state.currentMsg)
         
       }
     })
     this.setState({messages : msgArray})
   }
-  
+
   render () {
     const convName = this.state.conversations.map((conv, index) => {
       return (<p key={index} id={index} onClick={() => this.setState({currentConversation : conv.name})}>{conv.name}</p>
@@ -89,7 +89,7 @@ class App extends Component {
         <div className='row'>
           <div className='col-4'>
             <Conversations>
-              {<button onClick={(event) => this.whatHappened(event)}>Show me the console!</button> }
+              {/* {<button onClick={(event) => this.whatHappened(event)}>Show me the console!</button> } */}
               <h2>
                 Direct Messages
               </h2>
