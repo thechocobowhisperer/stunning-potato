@@ -2,6 +2,7 @@ import React from 'react';
 import { InputGroup, Input, InputGroupAddon, Button, CustomInput } from 'reactstrap';
 
 const Chatter = (props) => {
+    
     return (
       <div className='container'>
         {props.children}
@@ -9,13 +10,13 @@ const Chatter = (props) => {
             <InputGroupAddon addonType='prepend'>
                 <CustomInput type='switch'></CustomInput>
             </InputGroupAddon>
-            <Input className='col' onChange={(event) => this.changeName(event)} name='Name of Input' 
+            <Input className='col' onChange={props.setMsg} name='Name of Input' 
             placeholder={props.suggestion}
             />
             <InputGroupAddon addonType='append'>
                 <Button
                 color='primary'
-                onClick={(event) => this.sendMsg(event)}
+                onClick={props.doThing}
                 >
                     Submit
                 </Button>

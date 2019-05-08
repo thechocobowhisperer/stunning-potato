@@ -7,25 +7,23 @@ class App extends Component {
   state = {
     conversations : [
                     {name: 'Person 1', 
-                    isActive: true, 
                     messages: [
                        {msg:'Hello, Person 1', sender: 'You'}, {msg:'Hi there', sender:'Person 1'}
                     ]}, 
 
                     {name: 'Person 2', 
-                    isActive: false, 
                     messages: [
                        {msg:'Hello, Person 2', sender: 'You'}, {msg:'Hello', sender: 'Person 2'}
                     ]}, 
 
                     {name: 'Person 3', 
-                    isActive: false, 
                     messages: [
                       {msg:'Hello, Person 3', sender: 'You'},  {msg:'Hola', sender: 'Person 3'}
                     ]}
     ],
     currentConversation : 'Person 1',
-    currentSpeaker : 'You'
+    currentSpeaker : 'You',
+    currentMsg: ''
   }
   whatHappened = (event) => {
     const convSelect = this.state.conversations
@@ -41,18 +39,37 @@ class App extends Component {
        })
      
     )})
+    const currMsg = this.state.currentMsg
+    const conversations = this.state.conversations;
+    const msgArray = conversations.map((messages) => {
+      if (messages.name === this.state.currentConversation) {
+        console.log(messages)      }
+    })
+     chatSelect.push(this.state.currentMsg)
+     console.log(msgArray.value);
+     this.setState({chatSelect : msgArray})
 
-    console.log(this.state.conversations.map((conv, index) => {
-      return (<p key={index} id={index} onClick={() => this.setState({currentConversation : this.conv.name})}>{conv.name}</p>
-  )}));
+    
   }
         
   
-  sendMsg = (event) => {
-    let message = []
-    console.log()
-    this.setState({conversations : message})
+  setMsg = (event) => {
+    let msgCollect = {msg: event.target.value, sender: this.state.currentSpeaker}
+    console.log(msgCollect)
+    this.setState({currentMsg : msgCollect})
   }
+
+  sendMsg = (event) => {
+    const conversations = this.state.conversations;
+    const msgArray = conversations.map((convo) => {
+      if (convo.name === this.state.currentConversation) {
+        convo.messages.push(this.state.currentMsg)
+        
+      }
+    })
+    this.setState({messages : msgArray})
+  }
+  
   render () {
     const convName = this.state.conversations.map((conv, index) => {
       return (<p key={index} id={index} onClick={() => this.setState({currentConversation : conv.name})}>{conv.name}</p>
@@ -80,7 +97,7 @@ class App extends Component {
             </Conversations>
           </div>
           <div className='col-8'>
-            <Chatter suggestion= {speaker}>
+            <Chatter suggestion= {speaker} setMsg= {(msg) => this.setMsg(msg)} doThing={(event) => this.sendMsg(event)}>
               {dispMsgs}
             </Chatter>
           </div>
