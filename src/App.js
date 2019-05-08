@@ -41,7 +41,9 @@ class App extends Component {
      
     )})
 
-    console.log(dispMsgs);
+    console.log(this.state.conversations.map((conv, index) => {
+      return (<p key={index} id={index} onClick={() => this.setState({currentConversation : this.conv.name})}>{conv.name}</p>
+  )}));
   }
         
   
@@ -52,7 +54,7 @@ class App extends Component {
   }
   render () {
     const convName = this.state.conversations.map((conv, index) => {
-      return (<p key={index} id={index}>{conv.name}</p>
+      return (<p key={index} id={index} onClick={() => this.setState({currentConversation : conv.name})}>{conv.name}</p>
   )})
   const dispMsgs = this.state.conversations.map((conv) => {return (
      conv.messages.map((msgs, index)=>{
@@ -68,7 +70,7 @@ class App extends Component {
         <div className='row'>
           <div className='col-4'>
             <Conversations>
-              {/* <button onClick={(event) => this.whatHappened(event)}>Show me the console!</button> */}
+              {<button onClick={(event) => this.whatHappened(event)}>Show me the console!</button> }
               <h2>
                 Direct Messages
               </h2>

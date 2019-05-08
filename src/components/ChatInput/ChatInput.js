@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputGroup, Input, InputGroupAddon, Button } from 'reactstrap';
+import { InputGroup, Input, InputGroupAddon, Button, CustomInput } from 'reactstrap';
 
 const Chatter = (props) => {
     return (
@@ -7,7 +7,7 @@ const Chatter = (props) => {
         {props.children}
         <InputGroup>
             <InputGroupAddon addonType='prepend'>
-                <Button>Switch</Button>
+                <CustomInput type='switch'></CustomInput>
             </InputGroupAddon>
             <Input className='col' onChange={(event) => this.changeName(event)} name='Name of Input' 
             placeholder={props.suggestion}
