@@ -24,7 +24,8 @@ class App extends Component {
                       {msg:'Hello, Person 3', sender: 'You'},  {msg:'Hola', sender: 'Person 3'}
                     ]}
     ],
-    currentConversation : 'Person 1'
+    currentConversation : 'Person 1',
+    currentSpeaker : 'You'
   }
   whatHappened = (event) => {
     const convSelect = this.state.conversations
@@ -56,14 +57,15 @@ class App extends Component {
     const convName = this.state.conversations.map((conv, index) => {
       return (<p key={index} id={index} onClick={() => this.setState({currentConversation : conv.name})}>{conv.name}</p>
   )})
-  const dispMsgs = this.state.conversations.map((conv) => {return (
-     conv.messages.map((msgs, index)=>{
-      if (conv.name === this.state.currentConversation) {
-         return <p key={index} id={conv.name}>{msgs.sender} : {msgs.msg}</p>
-      }
-      })
-    
-  )})
+    const dispMsgs = this.state.conversations.map((conv) => {return (
+      conv.messages.map((msgs, index)=>{
+        if (conv.name === this.state.currentConversation) {
+          return <p key={index} id={conv.name}>{msgs.sender} : {msgs.msg}</p>
+        }
+        })
+    )})
+      const speaker = 'Send as ' + this.state.currentSpeaker
+
     return (
       
       <div className="container">
@@ -78,7 +80,7 @@ class App extends Component {
             </Conversations>
           </div>
           <div className='col-8'>
-            <Chatter suggestion='Send as X'>
+            <Chatter suggestion= {speaker}>
               {dispMsgs}
             </Chatter>
           </div>
