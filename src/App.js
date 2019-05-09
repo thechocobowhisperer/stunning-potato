@@ -26,33 +26,26 @@ class App extends Component {
     currentMsg: ''
   }
   whatHappened = (event) => {
-    const convSelect = this.state.conversations
-    const chatSelect = convSelect[0].messages
-    const sendSelect = chatSelect[0].sender
-    const msgSelect = chatSelect[0].msg
-    const dispMsgs = this.state.conversations.map((conv) => {return (
-      conv.messages.map((msgs, index)=>{
-        if (conv.isActive) {
-          return <p key={index} id={conv.name}>{msgs.sender} : {msgs.msg}</p>
-        }
-
-       })
-     
-    )})
-    const currMsg = this.state.currentMsg
-    const conversations = this.state.conversations;
-    const msgArray = conversations.map((messages) => {
-      if (messages.name === this.state.currentConversation) {
-        console.log(messages)      }
-    })
-     chatSelect.push(this.state.currentMsg)
-     console.log(msgArray.value);
-     this.setState({chatSelect : msgArray})
+   console.log('Use me as a tool to see what happens behind the scenese')
 
     
   }
         
-  
+  changeName = (event) => {
+    let currentName = this.state.currentSpeaker
+    const otherSpeaker = this.state.currentConversation
+    if (currentName === 'You') {
+      currentName = otherSpeaker
+      this.setState({currentSpeaker : currentName})
+      console.log(currentName)
+    }
+    else {
+      currentName = 'You'
+      this.setState({currentSpeaker : currentName})
+    }
+    
+  }
+
   setMsg = (event) => {
     let msgCollect = {msg: event.target.value, sender: this.state.currentSpeaker}
     console.log(msgCollect)
@@ -62,11 +55,12 @@ class App extends Component {
   sendMsg = (event) => {
     const conversations = this.state.conversations;
     const msgArray = conversations.map((convo) => {
-      if (convo.name === this.state.currentConversation && this.state.currentMsg !== '') {
+      if (convo.name === this.state.currentConversation) {
         convo.messages.push(this.state.currentMsg)
         
       }
     })
+    console.log(this.state.currentMsg)
     this.setState({messages : msgArray})
   }
 
@@ -97,7 +91,7 @@ class App extends Component {
             </Conversations>
           </div>
           <div className='col-8'>
-            <Chatter suggestion= {speaker} setMsg= {(msg) => this.setMsg(msg)} doThing={(event) => this.sendMsg(event)}>
+            <Chatter suggestion= {speaker} toggleMe={(name) => this.changeName(name)} setMsg= {(msg) => this.setMsg(msg)} doThing={(event) => this.sendMsg(event)}>
               {dispMsgs}
             </Chatter>
           </div>

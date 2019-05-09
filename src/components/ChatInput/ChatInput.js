@@ -7,8 +7,8 @@ const Chatter = (props) => {
       <div className='container'>
         {props.children}
         <InputGroup>
-            <InputGroupAddon addonType='prepend'>
-                <CustomInput type='switch'></CustomInput>
+            <InputGroupAddon addonType='prepend' onClick={props.toggleMe}>
+                <CustomInput type='switch' ></CustomInput>
             </InputGroupAddon>
             <Input className='col' onChange={props.setMsg} name='Name of Input' 
             placeholder={props.suggestion}
