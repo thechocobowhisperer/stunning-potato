@@ -66,7 +66,7 @@ class App extends Component {
 
   render () {
     const convName = this.state.conversations.map((conv, index) => {
-      return (<p key={index} id={index} onClick={() => this.setState({currentConversation : conv.name})}>{conv.name}</p>
+      return (<p key={index} id={index} className={'pointer'} onClick={() => this.setState({currentConversation : conv.name})}>{conv.name}</p>
   )})
     const dispMsgs = this.state.conversations.map((conv) => {return (
       conv.messages.map((msgs, index)=>{
